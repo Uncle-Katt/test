@@ -1,0 +1,99 @@
+﻿<div class="ibox-content">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>Quản lý Banner</h5>
+            <div class="ibox-tools">
+                <button type="button" class="btn btn-success btn-outline m-t-n-sm" ng-click="OpenDetailForm()">
+                    <span class="glyphicon glyphicon-plus"></span> Thêm mới
+                </button>
+            </div>
+        </div>
+
+        <div class="ibox-content">
+            <div style="overflow: hidden;">
+                <div class="file-box" ng-repeat="row in ListDatas">
+                    <div class="file">
+                        <span class="corner"></span>
+                        <div class="image content-center">
+                            <img alt="image" class="img-responsive" ng-src="{{}}">
+                        </div>
+                        <div class="file-name">
+                            <div>Thứ tự: {{row.UuTien}} <input type="checkbox" class="i-checks" ng-disabled="true" ng-model="row.Active" data-title="Hiển thị" data-style="float: right; margin: 0px;"></div>
+                            <div class="text-center m-t-xs" style="overflow: hidden;">
+                                <a class="btn btn-white btn-sm" ng-click="OpenDetailForm(row)"><i class="fa fa-pencil text-warning"></i> Chi tiết </a>
+                                <a class="btn btn-white btn-sm" ng-click="delete(row)"><i class="fa fa-trash text-danger"></i> Xóa </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>''
+    </div>
+    <div class="modal inmodal" id="myModal-detail" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="text-right m-t-n-xs float-right">
+                        <button class="btn btn-primary" ng-click="CreateOrUpdate()">Lưu dữ liệu</button>
+                        <button class="btn btn-white" ng-click="CheckSave()">Thoát</button>
+                    </div>
+                    <h4 class="modal-title">Thông tin Banner</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="get" class="form-horizontal" id="iss-form">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Tiêu đề <a style='color:red'>(*)</a></label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" ng-model="mData.TieuDe" required
+                                               ng-change="ChangeData()" />
+                                    </div>
+                                    <label class="col-sm-2 control-label">
+                                        Ưu tiên <a style='color:red'>(*)</a>
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" ng-model="mData.UuTien" ng-change="ChangeData()" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="checkbox" class="i-checks" id="DaXoa" ng-model="mData.Active" data-title="Sử dụng">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">LinkWeb<a style='color:red'>(*)</a></label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" ng-model="mData.LinkWeb" ng-change="ChangeData()" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2 control-label">
+                                        <label>Hình ảnh Web</label>
+                                        <label>(Tỷ lệ 3:1)<a style='color:red'>(*)</a></label>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <a href="#" class="thumbnail content-center image-empty" style="height: 250px; background-color: #eee;" title="Chọn ảnh" onclick="$('#myFile').click();">
+                                            <img id="imgdAnh" style="max-width: 100%; max-height: 100%;" src="{{}}" />
+                                        </a>
+                                        <input type="file" id="myFile" class="hidden" accept=".jpg,.png" onchange="angular.element(this).scope().ChonAnh()">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!--<label class="col-sm-2 control-label">Hình ảnh App (Tỷ lệ 3:1)<a style='color:red'>(*)</a></label>-->
+                                    <div class="col-sm-2 control-label">
+                                        <label>Hình ảnh Mobile</label>
+                                        <label>(Tỷ lệ 3:1)<a style='color:red'>(*)</a></label>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <a href="#" class="thumbnail content-center image-empty" style="height: 250px; background-color: #eee;" title="Chọn ảnh" onclick="$('#myFile1').click();">
+                                            <img id="imgdAnhMobile" style="max-width: 100%; max-height: 100%;" src="{{}}" />
+                                        </a>
+                                        <input type="file" id="myFile1" class="hidden" accept=".jpg,.png" onchange="angular.element(this).scope().ChonAnh1()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
